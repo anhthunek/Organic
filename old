@@ -1,0 +1,90 @@
+<?php
+                $products = getAllActive("products");
+                if (mysqli_num_rows($products) > 0) {
+                    foreach ($products as $item) {
+                ?>
+                        <div class="col-md-3 mt-2">
+                            <a href="product-view.php?product=<?= $item['slug'] ?>">
+                                <div class="product-item ">
+                                    
+                                        <img src="uploads/<?= $item['image'] ?>" alt="Category Image" class="w-100">
+                                        <div class="product-infor ">
+                                            <div><a href="" class="fs-5 "><?= $item['name'] ?> </a></div>
+                                            <div class="fs-5 text-left d-flex justify-content-between mb-3"><div>$<?= $item['original_price'] ?></div><div><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div></div>
+                                            <button class="btn-buy">BUY NOW</button>
+
+                                        </div>
+                                    
+                                </div>
+                            </a>
+                        </div>
+
+                <?php
+                    }
+                } else {
+                    echo "No data found";
+                }
+                ?>
+
+
+
+
+
+
+
+<div class="quick-view d-none">
+                                            <div class="bg-light py-4">
+                                                <div class="container mt-3">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="shadow"><img src="uploads/<?= $item['image'] ?>" alt="product Image" class="w-100"></div>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h4 class="fw-bold"><?= $item['name'] ?>
+                                                                <span class="fload-end text-danger"><?php if ($item['trending']) {
+                                                                                                        echo "trending";
+                                                                                                    }  ?></span>
+                                                            </h4>
+                                                            <div class="border my-3"></div>
+                                                            <p class="mb-3"><?= $item['small_description'] ?></p>
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-1  fs-3" style="color: #76A713;">$<span style="color: #76A713;" class="mr-2"><?= $item['selling_price'] ?></span></div>
+                                                                <?php
+                                                                if ($item['original_price'] == 0) {
+                                                                    echo "";
+                                                                ?>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+
+                                                                    <div class="col-md-1 fs-3 px-4"><del><span style="color: #333;">$<?= $item['original_price'] ?></span></div>
+                                                                <?php
+                                                                }
+                                                                ?>
+
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="input-group mb-3" style="width: 130px;">
+                                                                        <button class="input-group-text decrement-btn ">-</button>
+                                                                        <input type="text" class="form-control text-center qty-input bg-white" value="1">
+                                                                        <button class="input-group-text increment-btn ">+</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-3">
+                                                                <div class="col-md-3">
+                                                                    <button class=" px-4 addToCartBtn" value="<?= $item['id'] ?>"><i class="fa fa-shopping-cart " aria-hidden="true"></i>Add to cart</button>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <button class=" px-4 buyBtn">Buy now</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="border my-4"></div>
+                                                            <p><?= $item['description'] ?></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>

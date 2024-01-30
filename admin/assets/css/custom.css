@@ -1,0 +1,8 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar */
+.active.bg-gradient-primary {
+    background-image: linear-gradient(195deg,#00000082,#6fd81b94) ;
+}
